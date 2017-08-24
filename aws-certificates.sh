@@ -25,7 +25,7 @@ showCerts() {
 
 checkAndPrepareBatch() {
     echo "Getting list of certs..."
-    certs=$(aws iam list-server-certificates --output text --query 'ServerCertificateMetadataList[*].[Expiration,ServerCertificateName]' | sort | sed 's/Z[[:space:]]*/__/g; s/T/_/g')
+    certs=$(aws iam list-server-certificates --output text --query 'ServerCertificateMetadataList[*].[Expiration,ServerCertificateName]' | sort | sed 's/Z[[:space:]]*/Z__/g')
     echo "Choose cert to Check which ELB has it attached"
     select option in "Quit" ${certs}; do
         if [[ "${option}" = "Quit" ]]; then
