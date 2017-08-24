@@ -20,7 +20,7 @@ confirmSelection() {
     esac
 }
 showCerts() {
-    aws elb describe-load-balancers --region ${awsregion} --output text  --query "LoadBalancerDescriptions[*].{ID:LoadBalancerName,LIS:ListenerDescriptions[*].Listener}" | grep -B1 "${certName}"
+    aws elb describe-load-balancers --region ${awsregion} --output text  --query "LoadBalancerDescriptions[*].{ID:LoadBalancerName,Dummy:'ELB-Name',LIS:ListenerDescriptions[*].Listener}" | grep -B3 /${certName}$ | egrep "Name|/${certName}$"
 }
 
 checkAndPrepareBatch() {
