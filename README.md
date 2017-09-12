@@ -16,4 +16,4 @@ Helpful commands to be run manually
 
 Find instances without a specific tag across all regions
 --------------------------------------------------------
-`for i in $(aws ec2 describe-regions --query 'Regions[].{Name:RegionName}' --output text); do echo "----- region: $i -----"; aws ec2 describe-instances --region $i --output text --filters Name=instance-state-name,Values=running --query 'Reservations[].Instances[?!not_null(Tags[?Key == \`my_tag\`].Value)] | [].[InstanceId]'; done`
+``for i in $(aws ec2 describe-regions --query 'Regions[].{Name:RegionName}' --output text); do echo "----- region: $i -----"; aws ec2 describe-instances --region $i --output text --filters Name=instance-state-name,Values=running --query 'Reservations[].Instances[?!not_null(Tags[?Key == `my_tag`].Value)] | [].[InstanceId]'; done``
